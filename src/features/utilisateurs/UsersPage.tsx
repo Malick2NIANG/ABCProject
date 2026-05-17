@@ -8,6 +8,8 @@ import { UserTable } from './components/UserTable';
 import { UserModal } from './components/UserModal';
 import { useApp } from '../../context/AppContext';
 import { useAuth } from '../../context/AuthContext';
+import { usePagination } from '../../hooks/usePagination';
+import { Pagination } from '../../components/shared/Pagination';
 import type { User } from '../../types';
 
 export function UsersPage() {
@@ -45,6 +47,7 @@ export function UsersPage() {
   }
 
   const activeCount = users.filter((u) => u.actif).length;
+  const { page, setPage, pageSize, setPageSize, paginated, total, totalPages } = usePagination(users);
 
   return (
     <div className="space-y-5">
@@ -62,11 +65,14 @@ export function UsersPage() {
 
       <Card padding={false}>
         <UserTable
-          users={users}
+          users={paginated}
           onEdit={(u) => setUserModal({ open: true, user: u })}
           onDelete={(u) => setDeleteTarget(u)}
           onResetPassword={(u) => setResetTarget(u)}
         />
+        <div className="border-t border-gray-100">
+          <Pagination page={page} totalPages={totalPages} pageSize={pageSize} total={total} onPageChange={setPage} onPageSizeChange={setPageSize} />
+        </div>
       </Card>
 
       <UserModal

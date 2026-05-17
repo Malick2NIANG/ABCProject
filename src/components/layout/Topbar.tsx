@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Bell, Search, Menu, User, KeyRound,
+  Search, Menu, User, KeyRound,
   LogOut, X, Eye, EyeOff, CheckCircle, AlertCircle, ChevronDown,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
-import { useApp } from '../../context/AppContext';
 import { ROLE_LABELS } from '../../utils/constants';
+import { CommandPalette } from '../shared/CommandPalette';
 
 interface Props {
   title: string;
@@ -19,12 +19,12 @@ type Toast = { type: 'success' | 'error'; message: string } | null;
 
 export function Topbar({ title, onMenuClick }: Props) {
   const { currentUser, logout } = useAuth();
-  const { lowStockProducts } = useApp();
   const navigate = useNavigate();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modal, setModal]               = useState<Modal>(null);
   const [toast, setToast]               = useState<Toast>(null);
+  const [cmdOpen, setCmdOpen]           = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Password form
@@ -43,6 +43,17 @@ export function Topbar({ title, onMenuClick }: Props) {
     }
     document.addEventListener('mousedown', handle);
     return () => document.removeEventListener('mousedown', handle);
+  }, []);
+
+  useEffect(() => {
+    function handleCtrlK(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setCmdOpen(true);
+      }
+    }
+    window.addEventListener('keydown', handleCtrlK);
+    return () => window.removeEventListener('keydown', handleCtrlK);
   }, []);
 
   function showToast(type: 'success' | 'error', message: string) {
@@ -102,37 +113,35 @@ export function Topbar({ title, onMenuClick }: Props) {
 
   return (
     <>
-      <header className="h-16 bg-white border-b border-gray-100 flex items-center px-4 lg:px-6 gap-3 sticky top-0 z-20 shadow-sm">
+      <header className="h-16 bg-white border-b border-gray-100 flex items-center px-4 lg:px-6 sticky top-0 z-20 shadow-sm">
 
-        {/* Hamburger mobile */}
-        <button
-          onClick={onMenuClick}
-          className="lg:hidden p-2 rounded-lg hover:bg-brand-cream transition-colors text-brand-dark"
-        >
-          <Menu size={20} />
-        </button>
-
-        <h1 className="text-base font-semibold text-brand-dark flex-1 truncate">{title}</h1>
-
-        {/* Recherche desktop */}
-        <div className="relative hidden md:flex items-center">
-          <Search size={15} className="absolute left-3 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Rechercher..."
-            className="pl-9 pr-4 py-1.5 text-sm rounded-lg border border-gray-200 bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-green/30 w-52"
-          />
+        {/* Gauche : hamburger + titre */}
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden p-2 rounded-lg hover:bg-brand-cream transition-colors text-brand-dark flex-shrink-0"
+          >
+            <Menu size={20} />
+          </button>
+          <h1 className="text-base font-semibold text-brand-dark truncate">{title}</h1>
         </div>
 
-        {/* Cloche alertes */}
-        <button className="relative p-2 rounded-lg hover:bg-brand-cream transition-colors">
-          <Bell size={18} className="text-gray-500" />
-          {lowStockProducts.length > 0 && (
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
-          )}
-        </button>
+        {/* Centre : trigger palette */}
+        <div className="hidden md:flex justify-center flex-shrink-0">
+          <button
+            onClick={() => setCmdOpen(true)}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-brand-cream hover:border-brand-green/40 transition-colors w-56 text-left"
+          >
+            <Search size={15} className="text-gray-400 flex-shrink-0" />
+            <span className="flex-1 text-sm text-gray-400">Aller à...</span>
+            <kbd className="text-xs bg-white border border-gray-200 rounded px-1.5 py-0.5 text-gray-400 font-sans leading-none flex-shrink-0">
+              Ctrl K
+            </kbd>
+          </button>
+        </div>
 
-        {/* Profil + dropdown */}
+        {/* Droite : profil */}
+        <div className="flex-1 flex justify-end">
         <div ref={dropdownRef} className="relative pl-2 border-l border-gray-100">
           <button
             onClick={() => setDropdownOpen((o) => !o)}
@@ -201,7 +210,10 @@ export function Topbar({ title, onMenuClick }: Props) {
             )}
           </AnimatePresence>
         </div>
+        </div>
       </header>
+
+      <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
 
       {/* Toast */}
       <AnimatePresence>

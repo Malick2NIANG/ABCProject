@@ -8,6 +8,8 @@ import { OrderDetails } from './components/OrderDetails';
 import { CashierTerminal } from './components/CashierTerminal';
 import { useApp } from '../../context/AppContext';
 import { useFilters } from '../../hooks/useFilters';
+import { usePagination } from '../../hooks/usePagination';
+import { Pagination } from '../../components/shared/Pagination';
 import type { Order, OrderChannel } from '../../types';
 
 type View = 'hub' | 'commandes' | 'caisse';
@@ -31,6 +33,8 @@ export function VentesPage() {
   );
 
   const { filters, setFilter, filtered } = useFilters(orders, filterFn);
+  const distanceOrders = filtered.filter((o) => o.canal === 'distance');
+  const { page, setPage, pageSize, setPageSize, paginated, total, totalPages } = usePagination(distanceOrders);
 
   function handleChannelSelect(channel: OrderChannel) {
     setSelectedChannel(channel);
@@ -93,10 +97,10 @@ export function VentesPage() {
         </Card>
 
         <Card padding={false}>
-          <OrderTable
-            orders={filtered.filter((o) => o.canal === 'distance')}
-            onSelect={setSelectedOrder}
-          />
+          <OrderTable orders={paginated} onSelect={setSelectedOrder} />
+          <div className="border-t border-gray-100">
+            <Pagination page={page} totalPages={totalPages} pageSize={pageSize} total={total} onPageChange={setPage} onPageSizeChange={setPageSize} />
+          </div>
         </Card>
 
         <OrderDetails order={selectedOrder} onClose={() => setSelectedOrder(null)} />

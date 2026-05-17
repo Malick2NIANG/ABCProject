@@ -3,9 +3,9 @@ import { AuthLogin } from './AuthLogin';
 
 export function AuthPage() {
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+    <div className="h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
       {/* Colonne gauche — Formulaire */}
-      <div className="flex items-center justify-center bg-white px-6">
+      <div className="h-full overflow-y-auto flex items-center justify-center bg-white px-6">
         <Login />
       </div>
 

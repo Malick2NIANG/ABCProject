@@ -10,6 +10,8 @@ import { MovementModal } from './components/MovementModal';
 import { useApp } from '../../context/AppContext';
 import { useAuth } from '../../context/AuthContext';
 import { useFilters } from '../../hooks/useFilters';
+import { usePagination } from '../../hooks/usePagination';
+import { Pagination } from '../../components/shared/Pagination';
 import type { Product, MouvementType } from '../../types';
 import { CATEGORIES } from '../../utils/constants';
 
@@ -32,6 +34,7 @@ export function StockPage() {
   );
 
   const { filters, setFilter, filtered } = useFilters(products, filterFn);
+  const { page, setPage, pageSize, setPageSize, paginated, total, totalPages } = usePagination(filtered);
 
   function handleSaveProduct(data: Omit<Product, 'id'>) {
     if (productModal.product) {
@@ -110,11 +113,14 @@ export function StockPage() {
       {/* Table */}
       <Card padding={false}>
         <ProductTable
-          products={filtered}
+          products={paginated}
           onEdit={(p) => setProductModal({ open: true, product: p })}
           onDelete={(p) => setDeleteTarget(p)}
           onMovement={(p) => setMovementModal({ open: true, product: p })}
         />
+        <div className="border-t border-gray-100">
+          <Pagination page={page} totalPages={totalPages} pageSize={pageSize} total={total} onPageChange={setPage} onPageSizeChange={setPageSize} />
+        </div>
       </Card>
 
       <ProductModal

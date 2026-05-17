@@ -1,4 +1,4 @@
-import { ShoppingCart, Package, TrendingUp, AlertTriangle, Sun, KeyRound, CheckCircle, Clock } from 'lucide-react';
+import { ShoppingCart, Package, TrendingUp, AlertTriangle, KeyRound, CheckCircle, Clock } from 'lucide-react';
 import { KpiCard } from './components/KpiCard';
 import { SalesChart } from './components/SalesChart';
 import { StockAlertList } from './components/StockAlertList';
@@ -22,8 +22,7 @@ export function DashboardPage() {
     <div className="space-y-6">
       {/* Welcome */}
       <div>
-        <h2 className="text-lg font-bold text-brand-dark flex items-center gap-2">
-          <Sun size={20} className="text-brand-gold" />
+        <h2 className="text-lg font-bold text-brand-dark">
           Bonjour, {currentUser?.prenom}
         </h2>
         <p className="text-sm text-gray-400">Voici l'activité du jour — {new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
@@ -36,7 +35,6 @@ export function DashboardPage() {
           value={formatCurrency(totalVentes)}
           evolution={12}
           icon={<TrendingUp size={20} />}
-          accent
         />
         <KpiCard
           label="Commandes"

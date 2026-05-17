@@ -86,12 +86,12 @@ export function Login() {
   const demoUsers = MOCK_USERS.filter((u) => u.actif);
 
   return (
-    <div className="w-full max-w-sm mx-auto flex flex-col justify-center min-h-full py-10 px-2">
+    <div className="w-full max-w-sm mx-auto flex flex-col justify-center py-6 px-2">
 
       {/* En-tête commun */}
-      <div className="mb-7">
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-24 h-24 rounded-2xl overflow-hidden border border-gray-100 shadow-sm mb-3">
+      <div className="mb-4">
+        <div className="flex flex-col items-center mb-4">
+          <div className="w-16 h-16 rounded-2xl overflow-hidden border border-gray-100 shadow-sm mb-2">
             <img src="/images/Logo.jpg" alt="J'adore" className="w-full h-full object-cover" />
           </div>
           <p className="text-xl font-bold text-brand-dark leading-none tracking-wide">J'adore</p>
@@ -110,7 +110,7 @@ export function Login() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.25 }}
           >
-            <p className="text-sm text-gray-400 text-center mb-7">Connectez-vous pour accéder à votre espace.</p>
+            <p className="text-sm text-gray-400 text-center mb-5">Connectez-vous pour accéder à votre espace.</p>
 
             {/* Flash */}
             <AnimatePresence>
@@ -165,7 +165,7 @@ export function Login() {
             </form>
 
             {/* Accès démo */}
-            <div className="mt-7 border-t border-gray-100 pt-5">
+            <div className="mt-5 border-t border-gray-100 pt-4">
               <button
                 onClick={() => setShowDemo(!showDemo)}
                 className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-brand-green transition-colors w-full justify-center"
@@ -309,7 +309,7 @@ export function Login() {
       </AnimatePresence>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-8">
+      <div className="flex items-center justify-between mt-5">
         <p className="text-gray-300 text-xs">© SSD Consulting 2026</p>
         <img src={ABCLogoSigle} alt="ABC Agroalimentaire" className="h-8 w-auto object-contain" />
       </div>

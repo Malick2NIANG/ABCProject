@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react';
 import { Card } from '../../components/ui/Card';
 import { AuditTimeline } from './components/AuditTimeline';
 import { FilterBar } from './components/FilterBar';
+import { Pagination } from '../../components/shared/Pagination';
+import { usePagination } from '../../hooks/usePagination';
 import { useApp } from '../../context/AppContext';
 
 export function TracabilitePage() {
@@ -32,6 +34,8 @@ export function TracabilitePage() {
     });
   }, [auditLogs, search, action, dateFrom, dateTo]);
 
+  const { page, setPage, pageSize, setPageSize, paginated, total, totalPages } = usePagination(filtered);
+
   return (
     <div className="space-y-5">
       <div>
@@ -53,8 +57,13 @@ export function TracabilitePage() {
         />
       </Card>
 
-      <Card>
-        <AuditTimeline logs={filtered} />
+      <Card padding={false}>
+        <div className="p-5">
+          <AuditTimeline logs={paginated} />
+        </div>
+        <div className="border-t border-gray-100">
+          <Pagination page={page} totalPages={totalPages} pageSize={pageSize} total={total} onPageChange={setPage} onPageSizeChange={setPageSize} />
+        </div>
       </Card>
     </div>
   );
