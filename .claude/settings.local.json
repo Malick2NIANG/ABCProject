@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(code --install-extension bierner.github-markdown-preview 2>&1)",
+      "PowerShell(code --list-extensions 2>&1)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogo.png\")",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABClogo_Avec_SigleSignification.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogoSigle.png\")",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\ABCLogo.png\")",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogo.png\" -Force)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABClogo_Avec_SigleSignification.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogoSigle.png\" -Force)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\ABCLogo.png\" -Force)"
+    ]
+  }
+}
