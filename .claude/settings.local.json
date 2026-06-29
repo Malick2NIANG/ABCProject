@@ -8,7 +8,10 @@
       "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\ABCLogo.png\")",
       "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogo.png\" -Force)",
       "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABClogo_Avec_SigleSignification.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\src\\\\assets\\\\ABCLogoSigle.png\" -Force)",
-      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\ABCLogo.png\" -Force)"
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\images\\\\ABC Logo.png\" \"c:\\\\Users\\\\HP\\\\Desktop\\\\SSD Consulting\\\\company\\\\abc-jadoreproject\\\\public\\\\ABCLogo.png\" -Force)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

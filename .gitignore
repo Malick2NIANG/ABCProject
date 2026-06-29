@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Vite cache
+.vite/
+
+# Accidental capture artifact
+*captures_b64.txt
